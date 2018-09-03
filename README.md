@@ -80,10 +80,12 @@ protocol = peer
 [创建表](https://github.com/ycfung/ChainSQL-Docs/blob/master/.gitbook/assets/t_create.txt)
 
 ## 实例运行截图
-
+*[server_info]*
 ![&#x56DB;&#x4E2A;&#x8282;&#x70B9;&#x7684;peers](.gitbook/assets/192.168.1.141-2018-08-29-12-34-38.png)
 
+*[peers]*
 ![&#x5178;&#x578B;&#x6B63;&#x5E38;&#x8FD0;&#x4F5C;&#x7684;server\_info](.gitbook/assets/192.168.1.141-2018-08-29-12-36-41.png)
+
 
 ## 使用基于 Node.js 的 Raspberry Pi 将传感器上传到数据库
 
