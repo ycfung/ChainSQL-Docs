@@ -2,7 +2,7 @@
 
 ## MySQL的配置
 
-参考[GitHub Wiki](https://github.com/ChainSQL/chainsqld/blob/master/doc/manual/deploy.md)  
+参考 [GitHub Wiki](https://github.com/ChainSQL/chainsqld/blob/master/doc/manual/deploy.md)  
 
 只需要建好数据库并且更改为 UTF-8 编码即可
 
