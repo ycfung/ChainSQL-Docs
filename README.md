@@ -69,15 +69,15 @@ protocol = peer
 
 **具体操作的 JSON 如下**
 
-[表改名](./.gitbook/assets/t\_rename.txt")
+[表改名](./.gitbook/assets/r_rename.txt")
 
-[查询数据](./.gitbook/assets/r\_get.txt)
+[查询数据](./.gitbook/assets/r_get.txt)
 
-[删除数据](./.gitbook/assets/r\_delete.txt)
+[删除数据](./.gitbook/assets/r_delete.txt)
 
-[插入数据](./.gitbook/assets/r\_insert.txt)
+[插入数据](./.gitbook/assets/r_insert.txt)
 
-[创建表](./.gitbook/assets/t\_create.txt)
+[创建表](./.gitbook/assets/t_create.txt)
 
 ## 实例运行截图   
 
