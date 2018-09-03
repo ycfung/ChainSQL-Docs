@@ -93,9 +93,7 @@ protocol = peer
 
 ![Node-RED &#x4E0A;&#x7684; Flow](.gitbook/assets/node-red.PNG)
 
-测试用的 Flow 的配置如下:
-
-[Flow](https://github.com/ycfung/ChainSQL-Docs/blob/master/.gitbook/assets/flow.json)
+测试用的 Flow 的配置如下: [Flow](https://github.com/ycfung/ChainSQL-Docs/blob/master/.gitbook/assets/flow.json)
 
 ## 备注
 
