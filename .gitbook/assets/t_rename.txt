@@ -1,0 +1,22 @@
+{
+  "method": "t_rename",
+  "params": [
+    {
+      "offline": false,
+      "secret": "xnoPBzXtMeMyMHUVTgbuqAfg1SUTb",
+      "tx_json": {
+        "TransactionType": "TableListSet",
+        "Account": "zHb9CJAWyB4zj91VRWn96DkukG4bwdtyTh",
+        "Tables": [
+          {
+            "Table": {
+              "TableName": "Temperature",
+              "TableNewName": "ExampleNewName"
+            }
+          }
+        ],
+        "OpType": 3
+      }
+    }
+  ]
+}

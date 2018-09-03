@@ -1,0 +1,36 @@
+{
+  "method": "t_create",
+  "params": [
+    {
+      "offline": false,
+      "secret": "xnoPBzXtMeMyMHUVTgbuqAfg1SUTb",
+      "tx_json": {
+        "TransactionType": "TableListSet",
+        "Account": "zHb9CJAWyB4zj91VRWn96DkukG4bwdtyTh",
+        "Tables": [
+          {
+            "Table": {
+              "TableName": "Temperature"
+            }
+          }
+        ],
+        "OpType": 1,
+        "Raw": [
+          {
+            "field": "timestamp",
+            "type": "varchar",
+            "length": 50,
+            "PK": 1,
+            "NN": 1,
+            "UQ": 1
+          },
+          {
+            "field": "temperature",
+            "type": "float"
+          }
+        ],
+        "Confidential": false
+      }
+    }
+  ]
+}

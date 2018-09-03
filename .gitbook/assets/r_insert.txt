@@ -1,0 +1,28 @@
+{
+  "method": "r_insert",
+  "params": [
+    {
+      "offline": false,
+      "secret": "xnoPBzXtMeMyMHUVTgbuqAfg1SUTb",
+      "tx_json": {
+        "TransactionType": "SQLStatement",
+        "Account": "zHb9CJAWyB4zj91VRWn96DkukG4bwdtyTh",
+        "Owner": "zHb9CJAWyB4zj91VRWn96DkukG4bwdtyTh",
+        "Tables": [
+          {
+            "Table": {
+              "TableName": "Temperature"
+            }
+          }
+        ],
+        "Raw": [
+          {
+            "timestamp": "2018-09-02T12:41:40.646Z",
+            "temperature": 24
+          }
+        ],
+        "OpType": 6
+      }
+    }
+  ]
+}

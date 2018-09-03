@@ -1,0 +1,27 @@
+{
+  "method": "r_get",
+  "params": [
+    {
+      "offline": true,
+      "tx_json": {
+        "Owner": "zHb9CJAWyB4zj91VRWn96DkukG4bwdtyTh",
+        "Account": "zHb9CJAWyB4zj91VRWn96DkukG4bwdtyTh",
+        "Tables": [
+          {
+            "Table": {
+              "TableName": "Temperature"
+            }
+          }
+        ],
+        "Raw": [
+          [
+            "timestamp",
+            "temperature"
+          ]
+        ],
+        "OpType": 7,
+        "TableFlags": 65536
+      }
+    }
+  ]
+}
