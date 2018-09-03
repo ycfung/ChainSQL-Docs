@@ -2,13 +2,13 @@
 
 ## MySQL的配置
 
-参考 [GitHub Wiki](https://github.com/ChainSQL/chainsqld/blob/master/doc/manual/deploy.md)  
+参考 [GitHub Wiki](https://github.com/ChainSQL/chainsqld/blob/master/doc/manual/deploy.md)
 
 只需要建好数据库并且更改为 UTF-8 编码即可
 
 ## ChainSQL 的编译 \(推荐使用Ubuntu 16.04\)
 
-#### 在`/chainsqld/Builds/Ubuntu/`下执行`install_boost.sh`和`build_clang_libs.sh`
+### 在`/chainsqld/Builds/Ubuntu/`下执行`install_boost.sh`和`build_clang_libs.sh`
 
 然后在`/chainsqld`中使用 cmake 来编译安装
 
@@ -59,7 +59,7 @@ protocol = peer
 
 ## 使用 RPC 接口
 
-参考 [GitHub WIki](https://github.com/ChainSQL/chainsqld/blob/master/doc/ChainSQLDesign.md#6-rpc-%E6%8E%A5%E5%8F%A3)
+参考 [GitHub WIki](https://github.com/ChainSQL/chainsqld/blob/master/doc/ChainSQLDesign.md#6-rpc-接口)
 
 将 JSON 格式的文本 POST 到节点的 RPC 接口, IP 地址和端口写在`chainsqld.cfg`里的`[port_rpc_admin_local]`中
 
@@ -69,17 +69,17 @@ protocol = peer
 
 **具体操作的 JSON 如下**
 
-[表改名](./.gitbook/assets/t_rename.txt)
+[表改名](https://github.com/ycfung/ChainSQL-Docs/tree/90bca917fa534464cd0eda568e0f15898fbe3e73/.gitbook/assets/t_rename.txt)
 
-[查询数据](./.gitbook/assets/r_get.txt)
+[查询数据](https://github.com/ycfung/ChainSQL-Docs/tree/90bca917fa534464cd0eda568e0f15898fbe3e73/.gitbook/assets/r_get.txt)
 
-[删除数据](./.gitbook/assets/r_delete.txt)
+[删除数据](https://github.com/ycfung/ChainSQL-Docs/tree/90bca917fa534464cd0eda568e0f15898fbe3e73/.gitbook/assets/r_delete.txt)
 
-[插入数据](./.gitbook/assets/r_insert.txt)
+[插入数据](https://github.com/ycfung/ChainSQL-Docs/tree/90bca917fa534464cd0eda568e0f15898fbe3e73/.gitbook/assets/r_insert.txt)
 
-[创建表](./.gitbook/assets/t_create.txt)
+[创建表](https://github.com/ycfung/ChainSQL-Docs/tree/90bca917fa534464cd0eda568e0f15898fbe3e73/.gitbook/assets/t_create.txt)
 
-## 实例运行截图   
+## 实例运行截图
 
 ![&#x56DB;&#x4E2A;&#x8282;&#x70B9;&#x7684;peers](.gitbook/assets/192.168.1.141-2018-08-29-12-34-38.png)
 
@@ -93,10 +93,9 @@ protocol = peer
 
 ![Node-RED &#x4E0A;&#x7684; Flow](.gitbook/assets/node-red.PNG)
 
-
 测试用的 Flow 的配置如下:
 
-[Flow](./.gitbook/assets/flow.json)
+[Flow](https://github.com/ycfung/ChainSQL-Docs/blob/master/.gitbook/assets/flow.json)
 
 ## 备注
 
