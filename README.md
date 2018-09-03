@@ -1,6 +1,6 @@
-# ChainSQL的安装及使用
+# ChainSQL 的安装及使用
 
-## MySQL的配置
+## MySQL 的配置
 
 参考 [GitHub Wiki](https://github.com/ChainSQL/chainsqld/blob/master/doc/manual/deploy.md)
 
@@ -8,7 +8,7 @@
 
 ## ChainSQL 的编译 \(推荐使用Ubuntu 16.04\)
 
-### 在`/chainsqld/Builds/Ubuntu/`下执行`install_boost.sh`和`build_clang_libs.sh`
+在`/chainsqld/Builds/Ubuntu/`下执行`install_boost.sh`和`build_clang_libs.sh`
 
 然后在`/chainsqld`中使用 cmake 来编译安装
 
@@ -33,7 +33,7 @@ validators.txt
 * 在`[sync_db]`下配置好 mysql 相关信息
 * 在`[ips_fixed]`下配置好其他三个节点的 IP 地址以及端口号, 例如
 
-```bash
+```
 [ips_fixed]
 192.168.1.142 10002
 192.168.1.143 10003
@@ -42,7 +42,7 @@ validators.txt
 
 * 在 `[port_peer]`下填写本节点希望使用的端口
 
-```bash
+```
 [port_peer]
 port = 10001
 ip = 0.0.0.0
@@ -100,4 +100,3 @@ protocol = peer
 ## 备注
 
 在本地 MySQL 建好的 chainsql 数据库中会有两个表名, 一个是自动生成的`SyncTableState`记录了各个表的详细信息,其他都为用户生成的表, 表名经过了 hash, 需要在`SyncTableState`中查找对应的表, 至于表的内容没有经过加密, 可以在本地数据库进行查看, 但不应进行其他操作
-
