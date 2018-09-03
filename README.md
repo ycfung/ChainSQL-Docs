@@ -69,15 +69,15 @@ protocol = peer
 
 **具体操作的 JSON 如下**
 
-[表改名](https://github.com/ycfung/ChainSQL-Docs/tree/90bca917fa534464cd0eda568e0f15898fbe3e73/.gitbook/assets/t_rename.txt)
+[表改名](https://github.com/ycfung/ChainSQL-Docs/blob/master/.gitbook/assets/t_rename.txt)
 
-[查询数据](https://github.com/ycfung/ChainSQL-Docs/tree/90bca917fa534464cd0eda568e0f15898fbe3e73/.gitbook/assets/r_get.txt)
+[查询数据](https://github.com/ycfung/ChainSQL-Docs/blob/master/.gitbook/assets/r_get.txt)
 
-[删除数据](https://github.com/ycfung/ChainSQL-Docs/tree/90bca917fa534464cd0eda568e0f15898fbe3e73/.gitbook/assets/r_delete.txt)
+[删除数据](https://github.com/ycfung/ChainSQL-Docs/blob/master/.gitbook/assets/r_delete.txt)
 
-[插入数据](https://github.com/ycfung/ChainSQL-Docs/tree/90bca917fa534464cd0eda568e0f15898fbe3e73/.gitbook/assets/r_insert.txt)
+[插入数据](https://github.com/ycfung/ChainSQL-Docs/blob/master/.gitbook/assets/r_insert.txt)
 
-[创建表](https://github.com/ycfung/ChainSQL-Docs/tree/90bca917fa534464cd0eda568e0f15898fbe3e73/.gitbook/assets/t_create.txt)
+[创建表](https://github.com/ycfung/ChainSQL-Docs/blob/master/.gitbook/assets/t_create.txt)
 
 ## 实例运行截图
 
