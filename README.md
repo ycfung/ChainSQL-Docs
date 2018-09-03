@@ -69,7 +69,7 @@ protocol = peer
 
 **具体操作的 JSON 如下**
 
-[表改名](./.gitbook/assets/t_rename.txt")
+[表改名](./.gitbook/assets/t_rename.txt)
 
 [查询数据](./.gitbook/assets/r_get.txt)
 
