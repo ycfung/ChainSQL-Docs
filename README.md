@@ -57,6 +57,9 @@ protocol = peer
 
 常见问题排查: [FAQ](http://www.chainsql.net/faq.html)
 
+## 使用 JavaScript 接口
+参考 [Node_API.md](https://github.com/ycfung/ChainSQL-Docs/blob/master/Node_API.md)
+
 ## 使用 RPC 接口
 
 参考 [GitHub WIki](https://github.com/ChainSQL/chainsqld/blob/master/doc/ChainSQLDesign.md#6-rpc-接口)
