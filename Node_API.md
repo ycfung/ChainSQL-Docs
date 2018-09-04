@@ -1,16 +1,16 @@
-#Chainsql的JS API 环境建立及其使用
+# Chainsql的JS API 环境建立及其使用
 
 [chainSQL项目地址](https://github.com/ChainSQL/chainsqld)
 
 [Node chainsql API 项目地址](https://github.com/ChainSQL/node-chainsql-api)
 
-##1.准备工作
+## 1.准备工作
 
-####Chainsql安装
+#### Chainsql安装
 
 安装mysql，配置chainsqld；参照 [mysql-doc](https://github.com/ycfung/ChainSQL-Docs/blob/master/README.md) 及 [官方文档](https://github.com/ChainSQL/chainsqld/blob/master/doc/manual/deploy.md)
 
-####配置
+#### 配置
 
 为chainsql配置提供给JS API连接使用的地址，端口和协议
 ```
@@ -33,30 +33,30 @@ JS API安装
 终端进入当前目录使用npm install chainsql --save安装需要的node_module，安装成功后即可开始
 使用API
 
-##2.创建和使用操作对象
+## 2.创建和使用操作对象
 
 使用JS API前先启动chainsqld，参照 [mysql-doc](https://github.com/ycfung/ChainSQL-Docs/blob/master/README.md) 及 [官方文档](https://github.com/ChainSQL/chainsqld/blob/master/doc/manual/deploy.md)
 
 本示例在node终端运行
 
-####1）引入chainsql
+#### 1）引入chainsql
 ```JS
 const ChainsqlAPI = require('chainsql').ChainsqlAPI;
 ```
-####2）创建操作对象
+#### 2）创建操作对象
 
 ```JS
 const c = new ChainsqlAPI();
 ```
 
 
-####3）连接
+#### 3）连接
 
 ```JS
 c.connect("ws://127.0.0.1:6006");
 ```
 
-####4）填入操作使用的身份
+#### 4）填入操作使用的身份
 
 ```JS
 c.as({
@@ -66,7 +66,7 @@ c.as({
 ```
 
 （此账户是初始的根账户，拥有最高权限）
-####5）查看操作结果 submit() then() catch()
+#### 5）查看操作结果 submit() then() catch()
 在进行下面的操作时，需要对查看操作是否成功和操作返回的信息
 
 使用submit(option)，可以通过options来指示操作执行的结果（如发送成功，入库成功，验证成功）等于预期的值时才返回，超时则会引发异常对应，查询操作带options参数时不起作用;
@@ -119,9 +119,9 @@ c.dropTable("marvel").submit()
 #####（在下面介绍的几种操作中将省略以上几种操作，以便更简单直接了解API的使用，在实际使用中请根据需要添加）
 
 
-##3.表操作
+## 3.表操作
 使用具有权限的操作对象对表进行更改
-####1）创建表createTable()
+#### 1）创建表createTable()
 使用create函数创建表，其中首参为表名，第二个参数定义记录的格式
 如：
 
@@ -161,21 +161,21 @@ c.createTable("exampleName1", [
 | FK         | 值为1表示字段为某表的外键，必须配合REFERENCES使用                   |
 | REFERENCES | 值的格式为 {'table':'user','field':'id'}                            |
 
-####2）重命名
+#### 2）重命名
 
 ```JS
 c.renameTable(tableName, tableNewName)
 ```
 
-####3）删除表
+#### 3）删除表
 
 ```JS
 c.dropTable(tableName)
 ```
 
 
-##4.数据操作
-####1）插入数据insert
+## 4.数据操作
+#### 1）插入数据insert
 
 ```js
 c.table(tableName).insert(raw_json);
@@ -196,7 +196,7 @@ c.table("tableName").insert([{'id':1,'name':'peera','age': 22},{'id':2,'name':'p
 ```
 
 
-####2）获取数据get
+#### 2）获取数据get
 
 ```JS
 c.table(tableName).get(raw).submit();
@@ -231,13 +231,13 @@ Promise {
 
 另外对已有数据进行操作，首先要用get函数找到数据，如下面的更新和删除数据
 
-####3）更新数据
+#### 3）更新数据
 
 ```JS
 c.table(tableName).get(raw).update(raw_json)
 ```
 
-####4）删除数据delete
+#### 4）删除数据delete
 
 ```JS
 c.table(tableName).get(raw).delete()
