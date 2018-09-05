@@ -193,7 +193,7 @@ c.table(tableName).insert(raw_json).submit()
 插入多个记录时使用数组
 
 ```JS
-c.table("tableName").insert([{'id':1,'name':'peera','age': 22},{'id':2,'name':'peerb','age': 33}]).submit().submit()
+c.table("tableName").insert([{'id':1,'name':'peera','age': 22},{'id':2,'name':'peerb','age': 33}]).submit()
 ```
 
 
