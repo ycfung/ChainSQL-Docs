@@ -84,7 +84,7 @@ option的格式为{expect:"...."};例如：
 submit().then(function(result){
   console.log(result.status);
   console.log(result.tx_hash);
-})
+});
 ```
 
 使用catch()可以捕获submit()触发的异常，例如：
@@ -94,7 +94,7 @@ submit().then().catch(function(e) {
 	console.log(e.error);
 	console.log(e.tx_hash);
 
-}
+};
 ```
 
 实际用例：
@@ -113,7 +113,7 @@ c.dropTable("marvel").submit()
 	console.log(e.error);
 	console.log(e.tx_hash);
 
-}
+};
 ```
 
 
@@ -127,7 +127,7 @@ c.dropTable("marvel").submit()
 如：
 
 ```JS
-c.createTable("exampleName", [
+c.createTable("tableName", [
 	{
 		'field':'id',
 		'type':'int',
@@ -146,7 +146,7 @@ c.createTable("exampleName", [
 		'field':'age',
 		'type':'int'
 	}]
-).submit()
+).submit();
 ```
 
 参数说明：
@@ -165,13 +165,13 @@ c.createTable("exampleName", [
 #### 2）重命名
 
 ```JS
-c.renameTable(tableName, tableNewName).submit()
+c.renameTable(tableName, tableNewName).submit();
 ```
 
 #### 3）删除表
 
 ```JS
-c.dropTable(tableName).submit()
+c.dropTable(tableName).submit();
 ```
 
 
@@ -179,7 +179,7 @@ c.dropTable(tableName).submit()
 #### 1）插入数据insert
 
 ```js
-c.table(tableName).insert(raw_json).submit()
+c.table(tableName).insert(raw_json).submit();
 ```
 
 其中raw_json必须严格遵守json格式
@@ -188,29 +188,29 @@ c.table(tableName).insert(raw_json).submit()
 例：
 
 ```JS
-.submit()c.table("tableName").insert({'id':1,'name':'peera','age': 22}).submit()
+.submit()c.table("tableName").insert({'id':1,'name':'peera','age': 22}).submit();
 ```
 插入多个记录时使用数组
 
 ```JS
-c.table("tableName").insert([{'id':1,'name':'peera','age': 22},{'id':2,'name':'peerb','age': 33}]).submit()
+c.table("tableName").insert([{'id':1,'name':'peera','age': 22},{'id':2,'name':'peerb','age': 33}]).submit();
 ```
 
 
 #### 2）获取数据get
 
 ```JS
-c.table(tableName).get(raw).submit().submit()
+c.table(tableName).get(raw).submit().submit();
 ```
 例如
 ```JS
-c.table("tableName").get({name: 'peerab'}).submit()
+c.table("tableName").get({name: 'peerab'}).submit();
 ```
 Node操作实例
 
 ```JS
-> var data
-> c.table("exampleName").get({name:"peera"}).submit().then(function(result){data=result;})
+> var data;
+> c.table("tableName").get({name:"peera"}).submit().then(function(result){data=result;});
 Promise {
   <pending>,
   domain:
@@ -220,7 +220,7 @@ Promise {
      _eventsCount: 1,
      _maxListeners: undefined,
      members: [] } }
-> data
+> data;
 { diff: 0,
   lines:
    [ { age: 22, id: 1, name: 'peera' },
@@ -235,11 +235,11 @@ Promise {
 #### 3）更新数据
 
 ```JS
-c.table(tableName).get(raw).update(raw_json).submit()
+c.table(tableName).get(raw).update(raw_json).submit();
 ```
 
 #### 4）删除数据delete
 
 ```JS
-c.table(tableName).get(raw).delete().submit()
+c.table(tableName).get(raw).delete().submit();
 ```
