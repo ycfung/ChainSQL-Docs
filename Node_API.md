@@ -23,11 +23,11 @@ protocol = ws
 
 JS API安装
 新建JS项目
-在JS 项目下添加宝管理文件 package.json
+在JS 项目下添加包管理文件 package.json
 文件内容为
 ```JSON
 {
-    "chainsql":"^0.6.20",
+    "chainsql":"^0.6.20"
 }
 ```
 终端进入当前目录使用npm install chainsql --save安装需要的node_module，安装成功后即可开始
@@ -66,10 +66,11 @@ c.as({
 ```
 
 （此账户是初始的根账户，拥有最高权限）
-#### 5）查看操作结果 submit() then() catch()
-在进行下面的操作时，需要对查看操作是否成功和操作返回的信息
+#### 5）递交操作 submit()
 
-使用submit(option)，可以通过options来指示操作执行的结果（如发送成功，入库成功，验证成功）等于预期的值时才返回，超时则会引发异常对应，查询操作带options参数时不起作用;
+使用submit(option)函数将操作进行递交，获取操作结果
+
+可以通过参数options来指示操作执行的结果（如发送成功，入库成功，验证成功）等于预期的值时才返回，超时则会引发相应异常，查询操作带options参数时不起作用;
 option的格式为{expect:"...."};例如：
 
 ```JS
@@ -80,7 +81,7 @@ option的格式为{expect:"...."};例如：
 
 使用then(),可以对submit()返回的结果进行操作，例如
 ```JS
-then(function(result){
+submit().then(function(result){
   console.log(result.status);
   console.log(result.tx_hash);
 })
@@ -88,7 +89,7 @@ then(function(result){
 
 使用catch()可以捕获submit()触发的异常，例如：
 ```JS
-catch(function(e) {
+submit().then().catch(function(e) {
 
 	console.log(e.error);
 	console.log(e.tx_hash);
@@ -116,7 +117,7 @@ c.dropTable("marvel").submit()
 ```
 
 
-##### (在下面介绍的几种操作中将省略以上几种操作，以便更简单直接了解API的使用，在实际使用中请根据需要添加)
+##### (在下面介绍的几种操作中将省略then()和catch()处理结果，以便更简单直接了解其他接口的使用，在实际使用中请根据需要添加)
 
 
 ## 3.表操作
@@ -126,7 +127,7 @@ c.dropTable("marvel").submit()
 如：
 
 ```JS
-c.createTable("exampleName1", [
+c.createTable("exampleName", [
 	{
 		'field':'id',
 		'type':'int',
@@ -145,7 +146,7 @@ c.createTable("exampleName1", [
 		'field':'age',
 		'type':'int'
 	}]
-)
+).submit()
 ```
 
 参数说明：
@@ -164,13 +165,13 @@ c.createTable("exampleName1", [
 #### 2）重命名
 
 ```JS
-c.renameTable(tableName, tableNewName)
+c.renameTable(tableName, tableNewName).submit()
 ```
 
 #### 3）删除表
 
 ```JS
-c.dropTable(tableName)
+c.dropTable(tableName).submit()
 ```
 
 
@@ -178,7 +179,7 @@ c.dropTable(tableName)
 #### 1）插入数据insert
 
 ```js
-c.table(tableName).insert(raw_json);
+c.table(tableName).insert(raw_json).submit()
 ```
 
 其中raw_json必须严格遵守json格式
@@ -187,23 +188,23 @@ c.table(tableName).insert(raw_json);
 例：
 
 ```JS
-c.table("tableName").insert({'id':1,'name':'peera','age': 22}).submit();
+.submit()c.table("tableName").insert({'id':1,'name':'peera','age': 22}).submit()
 ```
 插入多个记录时使用数组
 
 ```JS
-c.table("tableName").insert([{'id':1,'name':'peera','age': 22},{'id':2,'name':'peerb','age': 33}]).submit();
+c.table("tableName").insert([{'id':1,'name':'peera','age': 22},{'id':2,'name':'peerb','age': 33}]).submit().submit()
 ```
 
 
 #### 2）获取数据get
 
 ```JS
-c.table(tableName).get(raw).submit();
+c.table(tableName).get(raw).submit().submit()
 ```
 例如
 ```JS
-c.table("tableName").get({name: 'peerab'})；
+c.table("tableName").get({name: 'peerab'}).submit()
 ```
 Node操作实例
 
@@ -234,11 +235,11 @@ Promise {
 #### 3）更新数据
 
 ```JS
-c.table(tableName).get(raw).update(raw_json)
+c.table(tableName).get(raw).update(raw_json).submit()
 ```
 
 #### 4）删除数据delete
 
 ```JS
-c.table(tableName).get(raw).delete()
+c.table(tableName).get(raw).delete().submit()
 ```
