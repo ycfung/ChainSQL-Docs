@@ -66,8 +66,20 @@ c.as({
 });
 ```
 
+
 （此账户是初始的根账户, 拥有最高权限）
-#### 5) 递交操作 submit()
+
+#### 5）选择需要进行操作的库的所有者 use()
+在对库操作之前我们需要先用use(adress)表明要使用谁创建的库，默认情况下，不使用use()函数时，将直接使用操作账户创建的库(即as中的adress)
+
+例:
+```JS
+c.use("zP8Mum8xaGSkypRgDHKRbN8otJSzwgiJ9M")
+```
+(注意:要操作别的账户创建的库，首先要获得别的用户的授权，后面将会介绍授权操作grant())
+
+
+#### 6) 递交操作 submit()
 
 使用 submit(option) 函数将操作进行递交, 获取操作结果
 
@@ -165,13 +177,13 @@ c.createTable("tableName", [
 #### 2) 重命名
 
 ```JS
-c.renameTable(tableName, tableNewName).submit();
+c.renameTable("tableName", tableNewName).submit();
 ```
 
 #### 3) 删除表
 
 ```JS
-c.dropTable(tableName).submit();
+c.dropTable("tableName").submit();
 ```
 
 
@@ -179,7 +191,7 @@ c.dropTable(tableName).submit();
 #### 1) 插入数据 insert
 
 ```js
-c.table(tableName).insert(raw_json).submit();
+c.table("tableName").insert(raw_json).submit();
 ```
 
 其中 raw_json 必须严格遵守 json 格式
@@ -235,11 +247,52 @@ Promise {
 #### 3) 更新数据 update
 
 ```JS
-c.table(tableName).get(raw).update(raw_json).submit();
+c.table("tableName").get(raw).update(raw_json).submit();
 ```
 
 #### 4)  删除数据 delete
 
 ```JS
-c.table(tableName).get(raw).delete().submit();
+c.table("tableName").get(raw).delete().submit();
 ```
+
+## 5.用户管理
+#### 1)创建新的账户 generateAddress()
+使用操作对象的generateAddress()函数可以创建一个新的账户，函数返回得到新账户的密码，地址和公钥
+```JS
+>c.generateAddress();
+{
+	"secret":"xcUd996waZzyaPEmeFVp4q5S3FZYB",
+	"address":"zP8Mum8xaGSkypRgDHKRbN8otJSzwgiJ9M",
+	"publicKey":"02B2F836C47A36DE57C2AF2116B8E812B7C70E7F0FEB0906493B8476FC58692EBE"
+}
+```
+创建了账户后我们就可以根据上面的方法的登陆该用户对数据库进行操作了，等等，账户是在本地创建的，要使用他，首先我们要对他进行激活，下面我们介绍用pay()方法来激活用户
+
+#### 2）转账pay()
+每个账户都有一个钱包用于储存金币，其中在系统默认的根账户中具有100000000000000000个金币，在创建新的账户的时候，需要拥有金币的的账户使用pay(adress,count)对其进行转账并成功才能激活用户,count表示转账的金币数，最少为5
+
+例：
+
+```JS
+c.pay('znvVbBAJgLZg5scAN4kXBnMuTxU1VtyCvM',5000);
+```
+(注意:在使用pay函数时不要使用submit()函数)
+
+#### 3) 授予对表操作的权限grant
+上面提到了使用createTable()创建新的表，这时候我们可以使用表的创建者对这个表进行增删查改的操作，但是这个表对别的账户是不可视的，如果要对别的账户进行授权操作，我们需要用到grant("tableName",user,rightInfo)函数
+操作的权限分为select insert update delete，授权的格式参照下面的示例
+
+例如我在账户zHb9CJAWyB4zj91VRWn96DkukG4bwdtyTh下创建了表，想对znvVbBAJgLZg5scAN4kXBnMuTxU1VtyCvM授权查和写的操作
+```JS
+c.grant("tableName","znvVbBAJgLZg5scAN4kXBnMuTxU1VtyCvM",{select: true, insert: true}).submit();
+```
+下面的可以用as登陆新的账户，对该表进行操作了，别忘了使用
+```JS
+c.use("zHb9CJAWyB4zj91VRWn96DkukG4bwdtyTh");
+```
+如果要取消刚刚的授权，可以使用
+```JS
+c.grant("tableName","znvVbBAJgLZg5scAN4kXBnMuTxU1VtyCvM",{select: false, insert: false}).submit();
+```
+
