@@ -1,5 +1,8 @@
 # ChainSQL 的 JS API 环境建立及其使用
 
+## 介绍
+本文档是参照chainsql提供的[JS_API](http://www.chainsql.net/api_javascript.html)编写，与原文档内容大体相同，根据项目源代码和实际操作结果，加以个人理解，对文档内容进行修正和补充
+
 [ChainSQL项目地址](https://github.com/ChainSQL/chainsqld)
 
 [Node Chainsql API 项目地址](https://github.com/ChainSQL/node-chainsql-api)
@@ -195,7 +198,7 @@ c.table("tableName").insert(raw_json).submit();
 ```
 
 其中 raw_json 必须严格遵守 json 格式
-（!!!在官方文档中给出的格式是错误的,在对数据进行操作时, raw 参数需严格遵守下面例子给出的格式, 否则操作失败, 而且在不同操作中使用的格式不同! 为了便于区分, 这里使用 raw_json 和 raw 区别）
+（在对数据进行操作时, raw 参数需严格遵守下面例子给出的格式, 否则操作失败, 而且在不同操作中使用的格式不同! 为了便于区分, 这里使用 raw_json 和 raw 区别）
 
 例:
 
@@ -294,5 +297,74 @@ c.use("zHb9CJAWyB4zj91VRWn96DkukG4bwdtyTh");
 如果要取消刚刚的授权，可以使用
 ```JS
 c.grant("tableName","znvVbBAJgLZg5scAN4kXBnMuTxU1VtyCvM",{select: false, insert: false}).submit();
+```
+## 6.创建交易
+
+上面提到的需要入链的操作，每执行一条命令就会对应生成一笔交易，然而在实际使用中，一笔交易往往涉及多个数据库的基本操作，它可能同时需要添加新数据，删除或更新旧的数据，这时候我们需要单独创建交易
+
+#### 1)  开始交易beginTran()
+使用
+```JS
+c.beginTran()
+```
+交易开始后，可以开始写入交易的操作内容
+如：
+```JS
+c.table("tableName1").insert({'id':100,'name':'peersafe', 'age':20}, {'id':200,'name': 'zongxiang', 'age': 21});
+c.table("tableName2").get({id: 1}).assert({age:22, name: 'peersafe'});
+c.table("tableName2").get({id: 1}).update({'age':52, 'name': 'zongxiang'});
+c.table("tableName1").delete({'id':1});
+```
+
+#### 2) 递交交易commit()
+
+在上面写到的操作代码中，并没有使用submit函数对操作进行递交，因为所有的操作应该是作为一个交易一起递交的，在写入所有的操作后，使用commit()递交交易
+与逐个操作递交的区别除了只生成单个交易以外，所有的操作都是交易的一部分，只有所有的操作都通过了验证，交易才能通过验证，只要其中一个操作失败，所有操作驳回
+```JS
+c.commit()
+```
+至于commit函数的具体用法，与submit()函数是相同的，所以这里不多作解释
+
+#### 3) 断言操作assert()
+一笔交易可能是复杂的，它能否执行除了需要正确的操作以外，可能还需要以数据库中的一些信息作为先决条件，这时候我们需要在交易的操作描述中加入断言操作assert()对数据库里的某些信息进行获取和判断，如果条件不符合，我们直接驳回整笔交易
+例:
+```JS
+c.table("posts").get({id: 1}).assert({age:'52',name:'lisi'});
+```
+
+## 7.获取区块信息
+直接对区块链及链上信息进行获取，不会创建交易，十分简单
+为了查看结果我们需要用到一个回调函数，为便于操作，我们先定义一个简单的函数callback把结果log出来
+```JS
+var callback = function(err,data){console.log(err);console.log(data)}
+```
+下面是函数的含义及用法
+```JS
+c.getLedger(option,callback)                //获取区块链的相关信息
+c.getLedgerVersion(callback)                //获取区块链的版本
+c.getTransactions(adress,callback)          //根据地址查看某个账户进行的交易
+c.getTransaction(hash,callback)             //根据交易哈希获取某个交易
+```
+
+其中，getLedger操作可以选择性地获取信息
+如:
+```JS
+option={
+    limit:12,                       //交易条数
+    ledgerVersion :666,             //版本号
+                                    //下面是返回信息中含有哪些内容
+	includeAllData : false,
+	includeTransactions : true,
+	includeState : false
+} 
+```
+
+## 8.订阅
+```JS
+c.subscribeTable(owner_adress, tablename, callback);        //对某张表进行订阅(callback函数参考第七部分的定义)
+c.unsubcribeTable(owner, tablename);                        //取消订阅
+
+c.subscribeTx(txid, callback);                              //对某个交易进行订阅(txid是指交易哈希)
+c.unsubscribeTx(txid);                                      //取消订阅
 ```
 
